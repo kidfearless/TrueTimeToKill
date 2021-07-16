@@ -1,4 +1,4 @@
-import { BodyPoints, Convert, DamageProfile, Weapon } from './WarzoneWeapons.js';
+import { BodyPoints, Convert, DamageProfile, Weapon, WeaponTypes } from './WarzoneWeapons.js';
 export var Columns = {
     WeaponName: 0,
     TimeToKill: 1,
@@ -26,6 +26,10 @@ export var SortDirection = {
 export class App {
     constructor() {
         this.ColumnDirection = {};
+        this.Filters = {};
+        for (let type in WeaponTypes) {
+            this.Filters[type] = true;
+        }
         for (let i = 0; i < Columns.Size; i++) {
             this.ColumnDirection[i] = SortDirection.Ascending;
         }
@@ -37,6 +41,7 @@ export class App {
     static set Range(value) {
         App._Range = value;
         if (app.Grid) {
+            app.SortTableByID(app.CurrentSortID);
             app.CreateTable(true);
         }
     }
@@ -66,12 +71,32 @@ export class App {
         range.addEventListener("change", (ev) => {
             App.Range = parseFloat(range.value);
         });
+        let settings = document.getElementById("SettingsRow");
+        for (let type in WeaponTypes) {
+            let checkbox = document.createElement("input");
+            checkbox.name = type + "_filterbox";
+            checkbox.type = "checkbox";
+            checkbox.checked = true;
+            checkbox.addEventListener("change", () => this.OnWeaponTypeFiltered(checkbox.checked, type));
+            settings.appendChild(checkbox);
+            let label = document.createElement("label");
+            label.htmlFor = type + "_filterbox";
+            label.textContent = WeaponTypes[type];
+            settings.appendChild(label);
+        }
         await this.ScriptImportPromise;
+        this.CreateTable();
+    }
+    OnWeaponTypeFiltered(value, type) {
+        this.Filters[type] = value;
         this.CreateTable();
     }
     CreateTable(updaterange = false) {
         this.ClearTable();
         for (let weapon of this.Weapons) {
+            if (!this.Filters[weapon.Type]) {
+                continue;
+            }
             let weaponname = this.Grid.children[Columns.WeaponName];
             let span = document.createElement("span");
             span.innerText = weapon.DisplayName;

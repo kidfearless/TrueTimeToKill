@@ -117,6 +117,15 @@ export var Type;
     Type["Sr"] = "SR";
     Type["Tr"] = "TR";
 })(Type || (Type = {}));
+export var WeaponTypes = {
+    "AR": "Assault Rifles",
+    "LMG": "Large Machine Guns",
+    "MR": "Marksmen Rifles",
+    "Pistols": "Pistols",
+    "SMG": "Small Machine Guns",
+    "SR": "Sniper Rifles",
+    "TR": "Tactical Rifles"
+};
 export class Convert {
     static ToWeapons(json) {
         return Cast(JSON.parse(json), ToAny(R("Weapons")));

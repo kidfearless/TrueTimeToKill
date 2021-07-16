@@ -1,5 +1,5 @@
 import { FireOnDomReady } from './Helpers.js';
-import { BodyPoints, Convert, DamageProfile, IWeapon, Weapon } from './WarzoneWeapons.js';
+import { BodyPoints, Convert, DamageProfile, IWeapon, Type, Weapon, WeaponTypes } from './WarzoneWeapons.js';
 
 
 
@@ -39,6 +39,7 @@ export class App
 	Weapons: Weapon[];
 	ScriptImportPromise: Promise<Response>;
 	Grid: HTMLDivElement;
+	Filters: {};
 
 	private static _Range: number = 40;
 	CurrentSortID: number;
@@ -51,6 +52,7 @@ export class App
 		App._Range = value;
 		if (app.Grid)
 		{
+			app.SortTableByID(app.CurrentSortID);
 			app.CreateTable(true);
 		}
 	}
@@ -58,6 +60,11 @@ export class App
 	constructor()
 	{
 		this.ColumnDirection = {};
+		this.Filters = {};
+		for(let type in WeaponTypes)
+		{
+			this.Filters[type] = true;
+		}
 		for (let i = 0; i < Columns.Size; i++)
 		{
 			this.ColumnDirection[i] = SortDirection.Ascending;
@@ -96,12 +103,35 @@ export class App
 	{
 		this.Grid = document.getElementById("WeaponsTable") as HTMLDivElement;
 		let range = document.getElementById("RangeInput") as HTMLInputElement;
+		
 		range.addEventListener("change", (ev) => 
 		{
 			App.Range = parseFloat(range.value);
 		});
+
+		let settings = document.getElementById("SettingsRow") as HTMLDivElement;
+		for(let type in WeaponTypes)
+		{
+			
+			let checkbox = document.createElement("input");
+			checkbox.name = type + "_filterbox";
+			checkbox.type = "checkbox";
+			checkbox.checked = true;
+			checkbox.addEventListener("change", () => this.OnWeaponTypeFiltered(checkbox.checked, type));
+			settings.appendChild(checkbox);
+
+			let label = document.createElement("label");
+			label.htmlFor = type + "_filterbox";
+			label.textContent = WeaponTypes[type];
+			settings.appendChild(label);
+		}
 		await this.ScriptImportPromise;
 
+		this.CreateTable();
+	}
+	OnWeaponTypeFiltered(value: boolean, type: string): any
+	{
+		this.Filters[type] = value;
 		this.CreateTable();
 	}
 	private CreateTable(updaterange:boolean = false)
@@ -113,6 +143,10 @@ export class App
 
 		for (let weapon of this.Weapons)
 		{
+			if(!this.Filters[weapon.Type])
+			{
+				continue;
+			}
 			let weaponname = this.Grid.children[Columns.WeaponName];
 			// @ts-ignore lastChild is a div element
 			let span = document.createElement("span");
@@ -154,7 +188,6 @@ export class App
 
 			headshotpercentage.lastChild.appendChild(headshotslider);
 		}
-		
 	}
 	OnHSPercentageChanged(headshotslider: HTMLInputElement, weapon: Weapon): any
 	{

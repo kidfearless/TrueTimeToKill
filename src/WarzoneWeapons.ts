@@ -224,6 +224,16 @@ export enum Type
 	Tr = "TR",
 }
 
+export var WeaponTypes = {
+	"AR": "Assault Rifles",
+	"LMG": "Large Machine Guns",
+	"MR": "Marksmen Rifles",
+	"Pistols": "Pistols",
+	"SMG": "Small Machine Guns",
+	"SR": "Sniper Rifles",
+	"TR": "Tactical Rifles"
+};
+
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class Convert

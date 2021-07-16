@@ -89,7 +89,8 @@ export class App {
             overallslider.max = "1.0";
             overallslider.step = "0.01";
             overallslider.value = weapon.OverallAccuracy.toString();
-            overallaccuracy.appendChild(overallslider);
+            overallaccuracy.lastChild.appendChild(overallslider);
+            overallslider.addEventListener("mouseup", () => this.OnAccuracyChanged(overallslider, weapon));
             let headshotpercentage = this.Grid.children[Columns.HeadshotPercentage];
             let headshotslider = document.createElement("input");
             headshotslider.type = "range";
@@ -97,8 +98,17 @@ export class App {
             headshotslider.max = "1.0";
             headshotslider.step = "0.01";
             headshotslider.value = weapon.HeadShotPercentage.toString();
-            headshotpercentage.appendChild(headshotslider);
+            headshotslider.addEventListener("mouseup", () => this.OnHSPercentageChanged(headshotslider, weapon));
+            headshotpercentage.lastChild.appendChild(headshotslider);
         }
+    }
+    OnHSPercentageChanged(headshotslider, weapon) {
+        weapon.HeadShotPercentage = parseFloat(headshotslider.value);
+        this.CreateTable(true);
+    }
+    OnAccuracyChanged(overallslider, weapon) {
+        weapon.OverallAccuracy = parseFloat(overallslider.value);
+        this.CreateTable(true);
     }
     ClearTable() {
         if (this.Grid.children.length > 0) {
@@ -127,6 +137,11 @@ export class App {
     }
     OnHeaderClicked(id) {
         this.ColumnDirection[id] = -this.ColumnDirection[id];
+        this.SortTableByID(id);
+        this.CreateTable();
+        this.CurrentSortID = id;
+    }
+    SortTableByID(id) {
         switch (id) {
             case Columns.WeaponName:
                 this.Weapons.sort((left, right) => this.ColumnDirection[id] * left.DisplayName.localeCompare(right.DisplayName));
@@ -140,7 +155,6 @@ export class App {
             default:
                 break;
         }
-        this.CreateTable();
     }
     PopulateTable() {
         for (let child of this.Grid.children) {

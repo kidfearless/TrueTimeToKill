@@ -41,6 +41,7 @@ export class App
 	Grid: HTMLDivElement;
 
 	private static _Range: number = 40;
+	CurrentSortID: number;
 	public static get Range(): number
 	{
 		return App._Range;
@@ -136,7 +137,9 @@ export class App
 			overallslider.max = "1.0";
 			overallslider.step = "0.01";
 			overallslider.value = weapon.OverallAccuracy.toString();
-			overallaccuracy.appendChild(overallslider);
+			overallaccuracy.lastChild.appendChild(overallslider);
+
+			overallslider.addEventListener("mouseup", () => this.OnAccuracyChanged(overallslider, weapon));
 
 			let headshotpercentage =  this.Grid.children[Columns.HeadshotPercentage];
 
@@ -146,11 +149,22 @@ export class App
 			headshotslider.max = "1.0";
 			headshotslider.step = "0.01";
 			headshotslider.value = weapon.HeadShotPercentage.toString();
+			headshotslider.addEventListener("mouseup", () => this.OnHSPercentageChanged(headshotslider, weapon));
 
 
-			headshotpercentage.appendChild(headshotslider);
+			headshotpercentage.lastChild.appendChild(headshotslider);
 		}
 		
+	}
+	OnHSPercentageChanged(headshotslider: HTMLInputElement, weapon: Weapon): any
+	{
+		weapon.HeadShotPercentage = parseFloat(headshotslider.value);
+		this.CreateTable(true);
+	}
+	OnAccuracyChanged(overallslider: HTMLInputElement, weapon: Weapon): any
+	{
+		weapon.OverallAccuracy = parseFloat(overallslider.value);
+		this.CreateTable(true);
 	}
 
 	private ClearTable()
@@ -191,9 +205,17 @@ export class App
 
 		return column;
 	}
-	OnHeaderClicked(id: number): any
+	OnHeaderClicked(id: number): void
 	{
+
 		this.ColumnDirection[id] = -this.ColumnDirection[id];
+		this.SortTableByID(id);
+		this.CreateTable();
+		this.CurrentSortID = id;
+	}
+
+	SortTableByID(id: number)
+	{
 		switch (id)
 		{
 			case Columns.WeaponName:
@@ -208,7 +230,6 @@ export class App
 			default:
 				break;
 		}
-		this.CreateTable();
 	}
 
 	PopulateTable()

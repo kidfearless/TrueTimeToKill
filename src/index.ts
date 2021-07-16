@@ -112,26 +112,31 @@ export class App
 		let settings = document.getElementById("SettingsRow") as HTMLDivElement;
 		for(let type in WeaponTypes)
 		{
-			
+			let span = document.createElement("span");
+			span.style.marginRight = "8px";
 			let checkbox = document.createElement("input");
 			checkbox.name = type + "_filterbox";
 			checkbox.type = "checkbox";
 			checkbox.checked = true;
-			checkbox.addEventListener("change", () => this.OnWeaponTypeFiltered(checkbox.checked, type));
-			settings.appendChild(checkbox);
+
 
 			let label = document.createElement("label");
 			label.htmlFor = type + "_filterbox";
 			label.textContent = WeaponTypes[type];
-			settings.appendChild(label);
+
+			span.appendChild(checkbox);
+			span.appendChild(label);
+			span.addEventListener("click", () => this.OnWeaponTypeFiltered(checkbox, type));
+			settings.appendChild(span);
 		}
 		await this.ScriptImportPromise;
 
 		this.CreateTable();
 	}
-	OnWeaponTypeFiltered(value: boolean, type: string): any
+	OnWeaponTypeFiltered(checkbox: HTMLInputElement, type: string): any
 	{
-		this.Filters[type] = value;
+		checkbox.checked = !checkbox.checked;
+		this.Filters[type] = checkbox.checked;
 		this.CreateTable();
 	}
 	private CreateTable(updaterange:boolean = false)
@@ -164,31 +169,41 @@ export class App
 
 
 			let overallaccuracy =  this.Grid.children[Columns.OverallAccuracy];
+			let slider = this.CreateAccuracySlider(weapon.OverallAccuracy, overallaccuracy.lastChild);
+			slider.addEventListener("mouseup", () => this.OnAccuracyChanged(slider, weapon));
+			
 
-			let overallslider = document.createElement("input");
-			overallslider.type = "range";
-			overallslider.min = "0.01";
-			overallslider.max = "1.0";
-			overallslider.step = "0.01";
-			overallslider.value = weapon.OverallAccuracy.toString();
-			overallaccuracy.lastChild.appendChild(overallslider);
-
-			overallslider.addEventListener("mouseup", () => this.OnAccuracyChanged(overallslider, weapon));
 
 			let headshotpercentage =  this.Grid.children[Columns.HeadshotPercentage];
-
-			let headshotslider = document.createElement("input");
-			headshotslider.type = "range";
-			headshotslider.min = "0.01";
-			headshotslider.max = "1.0";
-			headshotslider.step = "0.01";
-			headshotslider.value = weapon.HeadShotPercentage.toString();
-			headshotslider.addEventListener("mouseup", () => this.OnHSPercentageChanged(headshotslider, weapon));
+			let slider2 = this.CreateAccuracySlider(weapon.HeadShotPercentage, headshotpercentage.lastChild);
+			slider2.addEventListener("mouseup", () => this.OnHSPercentageChanged(slider2, weapon));
 
 
-			headshotpercentage.lastChild.appendChild(headshotslider);
 		}
 	}
+	private CreateAccuracySlider(accuracy:number, parentNode: Node): HTMLInputElement
+	{
+		/* 	<div>
+				<span>0.6</span>
+				<slider />
+			</div> */
+		let div = document.createElement("div");
+		let span = document.createElement("span");
+		// @ts-ignore parseInt can take a number as well as a string
+		span.textContent = parseInt(Math.round(100 * accuracy)).toString();
+		div.appendChild(span);
+
+		let slider = document.createElement("input");
+		slider.type = "range";
+		slider.min = "0.01";
+		slider.max = "1.0";
+		slider.step = "0.01";
+		slider.value = accuracy.toString();
+		div.appendChild(slider);
+		parentNode.appendChild(div);
+		return slider;
+	}
+
 	OnHSPercentageChanged(headshotslider: HTMLInputElement, weapon: Weapon): any
 	{
 		weapon.HeadShotPercentage = parseFloat(headshotslider.value);

@@ -18,10 +18,21 @@
 input[type=range]
 {
 	display: inline;
+	width: 100%;
 }
 
 .column > br
 {
 	line-height: 0px;
 	height: 0;
+}
+
+.column > .column  div {
+	display: flex;
+	flex-direction: row;
+}
+
+.column > .column  div > span {
+	display: inline-flex;
+	min-width: calc(8 * 5px);
 }

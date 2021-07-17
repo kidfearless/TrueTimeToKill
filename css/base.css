@@ -36,3 +36,9 @@ input[type=range]
 	display: inline-flex;
 	min-width: calc(8 * 5px);
 }
+
+label
+{
+	user-select: none;
+	cursor: pointer;
+}

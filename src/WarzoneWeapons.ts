@@ -142,7 +142,7 @@ export class Weapon implements IWeapon
 		// -1 because unless the gun has an open bolt delay it fires instantly
 		var result = ((neededShots - 1) / rps);
 
-		return Math.ceil(result * 100.0);
+		return Math.ceil(result * 1000.0);
 	}
 }
 

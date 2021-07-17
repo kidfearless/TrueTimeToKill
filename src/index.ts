@@ -16,10 +16,10 @@ export var Columns =
 	Size: 8,
 	0: "Weapon Name",
 	1: "Time To Kill",
-	2: "Head",
-	3: "Chest",
-	4: "Stomach",
-	5: "Extremeties",
+	2: "Head TTK",
+	3: "Chest TTK",
+	4: "Stomach TTK",
+	5: "Extremeties TTK",
 	6: "Overall Accuracy",
 	7: "Headshot Percentage"
 };
@@ -103,13 +103,27 @@ export class App
 	{
 		this.Grid = document.getElementById("WeaponsTable") as HTMLDivElement;
 		let range = document.getElementById("RangeInput") as HTMLInputElement;
+		let settings = document.getElementById("SettingsRow") as HTMLDivElement;
 		
 		range.addEventListener("change", (ev) => 
 		{
 			App.Range = parseFloat(range.value);
 		});
 
-		let settings = document.getElementById("SettingsRow") as HTMLDivElement;
+		let minusAccuracy = document.createElement("button");
+		minusAccuracy.textContent = "-";
+		minusAccuracy.addEventListener("click", () => this.ChangeAllAccuracies(-0.01));
+		settings.appendChild(minusAccuracy);
+
+		let accuracySpan = document.createElement("span");
+		accuracySpan.textContent = "Accuracy";
+		settings.appendChild(accuracySpan);
+
+		let plusAccuracy = document.createElement("button");
+		plusAccuracy.textContent = "+";
+		plusAccuracy.addEventListener("click", () => this.ChangeAllAccuracies(0.01));
+		settings.appendChild(plusAccuracy);
+
 		for(let type in WeaponTypes)
 		{
 			let span = document.createElement("span");
@@ -118,6 +132,7 @@ export class App
 			checkbox.name = type + "_filterbox";
 			checkbox.type = "checkbox";
 			checkbox.checked = true;
+			checkbox.addEventListener("click", () => this.OnWeaponTypeFiltered(checkbox, type));
 
 
 			let label = document.createElement("label");
@@ -133,12 +148,25 @@ export class App
 
 		this.CreateTable();
 	}
+	ChangeAllAccuracies(modifier: number): any
+	{
+		for(let weapon of this.Weapons)
+		{
+			weapon.OverallAccuracy += modifier;
+			weapon.OverallAccuracy = Math.min(1, weapon.OverallAccuracy);
+			weapon.OverallAccuracy = Math.max(0.01, weapon.OverallAccuracy);
+		}
+
+		this.CreateTable();
+	}
+
 	OnWeaponTypeFiltered(checkbox: HTMLInputElement, type: string): any
 	{
 		checkbox.checked = !checkbox.checked;
 		this.Filters[type] = checkbox.checked;
 		this.CreateTable();
 	}
+
 	private CreateTable(updaterange:boolean = false)
 	{
 		// 1.72 ms - replaceChildren
@@ -162,9 +190,9 @@ export class App
 
 			for (let i = Columns.Head; i <= Columns.Extremeties; i++)
 			{
-				span = document.createElement("span");
-				span.innerText = weapon.GetTimeToKillFromEnum(i, updaterange).toString();
-				this.Grid.children[i].lastChild.appendChild(span);
+				let label1 = document.createElement("span");
+				label1.innerText = weapon.GetTimeToKillFromEnum(i, updaterange).toString();
+				this.Grid.children[i].lastChild.appendChild(label1);
 			}
 
 
@@ -241,7 +269,7 @@ export class App
 	{
 		let column = document.createElement("div");
 
-		let header = document.createElement("span");
+		let header = document.createElement("label");
 		header.addEventListener("click", () => this.OnHeaderClicked(id));
 		header.innerText = title;
 		column.appendChild(header);

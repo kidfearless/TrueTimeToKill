@@ -72,7 +72,7 @@ export class Weapon {
         var neededShots = Math.ceil(shotsFired);
         var rps = this.Rpm / 60.0;
         var result = ((neededShots - 1) / rps);
-        return Math.ceil(result * 100.0);
+        return Math.ceil(result * 1000.0);
     }
 }
 export class DamageProfile {

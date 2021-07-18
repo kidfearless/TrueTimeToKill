@@ -6,6 +6,7 @@ export var WeaponTypes =
 	"Pistols",
 	"Tactical Rifles",
 	"Sniper Rifles",
+	"Marksman Rifles",
 	"Assault Rifles"
 ];
 
@@ -50,7 +51,7 @@ export class Weapon implements IWeapon
 
 		let timeToTarget = App.Range / this.Stats.BulletVelocity;
 		result += timeToTarget + this.Stats.OpenBoltDelay;
-		
+
 		// return in milliseconds
 		return Math.ceil(result * 1000.0);
 	}

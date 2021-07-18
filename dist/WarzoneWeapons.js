@@ -5,6 +5,7 @@ export var WeaponTypes = [
     "Pistols",
     "Tactical Rifles",
     "Sniper Rifles",
+    "Marksman Rifles",
     "Assault Rifles"
 ];
 export class Weapon {

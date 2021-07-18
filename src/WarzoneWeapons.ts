@@ -25,11 +25,17 @@ export interface IWeapon
 	Category: string;
 	WeaponAttachments: IWeaponAttachment[];
 }
+/* 
+	100		200
+	---		--
+	1		x
 
+*/
 export class Weapon implements IWeapon
 {
 	GetTimeToKill(damage: number): number
 	{
+		// Time in seconds here
 		let rawNeededShots = 250.0 / damage;
 
 		let shotsFired = rawNeededShots / this.OverallAccuracy;
@@ -42,8 +48,10 @@ export class Weapon implements IWeapon
 		// -1 because unless the gun has an open bolt delay it fires instantly
 		let result = ((neededShots - 1) / rps);
 
-		let timeToTarget = App.Range
-
+		let timeToTarget = App.Range / this.Stats.BulletVelocity;
+		result += timeToTarget + this.Stats.OpenBoltDelay;
+		
+		// return in milliseconds
 		return Math.ceil(result * 1000.0);
 	}
 	GetDamageProfileAtRange(): IDamage

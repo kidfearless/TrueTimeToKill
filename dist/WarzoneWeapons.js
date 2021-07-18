@@ -18,7 +18,8 @@ export class Weapon {
         let neededShots = Math.ceil(shotsFired);
         let rps = this.Stats.RPM / 60.0;
         let result = ((neededShots - 1) / rps);
-        let timeToTarget = App.Range;
+        let timeToTarget = App.Range / this.Stats.BulletVelocity;
+        result += timeToTarget + this.Stats.OpenBoltDelay;
         return Math.ceil(result * 1000.0);
     }
     GetDamageProfileAtRange() {

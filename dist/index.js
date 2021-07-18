@@ -71,7 +71,7 @@ export class App {
         plusAccuracy.textContent = "+";
         plusAccuracy.addEventListener("click", () => this.ChangeAllAccuracies(0.01));
         settings.appendChild(plusAccuracy);
-        for (let type in WeaponTypes) {
+        for (let type of WeaponTypes) {
             let span = document.createElement("span");
             span.style.marginRight = "8px";
             let checkbox = document.createElement("input");
@@ -81,7 +81,7 @@ export class App {
             checkbox.addEventListener("click", () => this.OnWeaponTypeFiltered(checkbox, type));
             let label = document.createElement("label");
             label.htmlFor = type + "_filterbox";
-            label.textContent = WeaponTypes[type];
+            label.textContent = type;
             span.appendChild(checkbox);
             span.appendChild(label);
             span.addEventListener("click", () => this.OnWeaponTypeFiltered(checkbox, type));

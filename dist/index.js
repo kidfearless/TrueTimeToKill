@@ -1,4 +1,4 @@
-import { BodyPoints, Convert, DamageProfile, Weapon, WeaponTypes } from './WarzoneWeapons.js';
+import { Weapon, WeaponTypes } from './WarzoneWeapons.js';
 export var Columns = {
     WeaponName: 0,
     TimeToKill: 1,
@@ -27,13 +27,13 @@ export class App {
     constructor() {
         this.ColumnDirection = {};
         this.Filters = {};
-        for (let type in WeaponTypes) {
+        for (let type of WeaponTypes) {
             this.Filters[type] = true;
         }
         for (let i = 0; i < Columns.Size; i++) {
             this.ColumnDirection[i] = SortDirection.Ascending;
         }
-        this.ScriptImportPromise = fetch("https://fx9.github.io/ttk/scripts/guns/all_guns.js").then(this.ScriptImported.bind(this));
+        this.ScriptImportPromise = fetch("data/Weapons.min.json").then(this.ScriptImported.bind(this));
     }
     static get Range() {
         return App._Range;
@@ -46,22 +46,10 @@ export class App {
         }
     }
     async ScriptImported(response) {
-        Columns['test fun'];
-        let script = await response.text();
-        script = script.split(';')[1];
-        script = script.substring("\nDEFAULT_GUNS = ".length);
-        let weapons = Convert.ToWeapons(script);
-        this.Weapons = new Array(weapons.length);
-        for (let j = 0; j < weapons.length; j++) {
-            let weapon = weapons[j];
-            let raw = weapon.DamageProfiles;
-            weapon.DamageProfiles = [];
-            for (let i = 0; i < raw.length; i++) {
-                let range = new DamageProfile();
-                range.Range = raw[i][0];
-                range.Damage = new BodyPoints(raw[i][1]);
-                weapon.DamageProfiles[i] = range;
-            }
+        let script = await response.json();
+        this.Weapons = script;
+        for (let j = 0; j < script.length; j++) {
+            let weapon = script[j];
             this.Weapons[j] = Object.assign(new Weapon(), weapon);
         }
     }
@@ -118,12 +106,12 @@ export class App {
     CreateTable(updaterange = false) {
         this.ClearTable();
         for (let weapon of this.Weapons) {
-            if (!this.Filters[weapon.Type]) {
+            if (!this.Filters[weapon.Category]) {
                 continue;
             }
             let weaponname = this.Grid.children[Columns.WeaponName];
             let span = document.createElement("span");
-            span.innerText = weapon.DisplayName;
+            span.innerText = weapon.WeaponName;
             weaponname.lastChild.appendChild(span);
             let timetokill = this.Grid.children[Columns.TimeToKill];
             for (let i = Columns.Head; i <= Columns.Extremeties; i++) {
@@ -135,7 +123,7 @@ export class App {
             let slider = this.CreateAccuracySlider(weapon.OverallAccuracy, overallaccuracy.lastChild);
             slider.addEventListener("mouseup", () => this.OnAccuracyChanged(slider, weapon));
             let headshotpercentage = this.Grid.children[Columns.HeadshotPercentage];
-            let slider2 = this.CreateAccuracySlider(weapon.HeadShotPercentage, headshotpercentage.lastChild);
+            let slider2 = this.CreateAccuracySlider(weapon.HeadshotPercentage, headshotpercentage.lastChild);
             slider2.addEventListener("mouseup", () => this.OnHSPercentageChanged(slider2, weapon));
         }
     }
@@ -155,7 +143,7 @@ export class App {
         return slider;
     }
     OnHSPercentageChanged(headshotslider, weapon) {
-        weapon.HeadShotPercentage = parseFloat(headshotslider.value);
+        weapon.HeadshotPercentage = parseFloat(headshotslider.value);
         this.CreateTable(true);
     }
     OnAccuracyChanged(overallslider, weapon) {
@@ -196,13 +184,15 @@ export class App {
     SortTableByID(id) {
         switch (id) {
             case Columns.WeaponName:
-                this.Weapons.sort((left, right) => this.ColumnDirection[id] * left.DisplayName.localeCompare(right.DisplayName));
+                this.Weapons.sort((left, right) => this.ColumnDirection[id] * left.WeaponName.localeCompare(right.WeaponName));
                 break;
             case Columns.Head:
             case Columns.Chest:
             case Columns.Stomach:
             case Columns.Extremeties:
-                this.Weapons.sort((left, right) => this.ColumnDirection[id] * Math.sign(left.GetTimeToKillFromEnum(id) - right.GetTimeToKillFromEnum(id)));
+                this.Weapons.sort((left, right) => {
+                    return this.ColumnDirection[id] * Math.sign(left.GetTimeToKillFromEnum(id) - right.GetTimeToKillFromEnum(id));
+                });
                 break;
             default:
                 break;

@@ -40,7 +40,7 @@ export class Weapon implements IWeapon
 	Category: string;
 	WeaponAttachments: IWeaponAttachment[];
 	OverallAccuracy: number = .50;
-	HeadshotPercentage: number = 1;
+	HeadshotPercentage: number = 0.2;
 	ChestToBodyRatio: number = .6;
 
 	public get DamageProfile(): IDamage

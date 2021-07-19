@@ -1,14 +1,14 @@
 import { App, Columns } from './index.js';
 export var WeaponTypes =
-[
-	"Light Machine Guns",
-	"Small Machine Guns",
-	"Pistols",
-	"Tactical Rifles",
-	"Sniper Rifles",
-	"Marksman Rifles",
-	"Assault Rifles"
-];
+	[
+		"Light Machine Guns",
+		"Small Machine Guns",
+		"Pistols",
+		"Tactical Rifles",
+		"Sniper Rifles",
+		"Marksman Rifles",
+		"Assault Rifles"
+	];
 
 export interface IDamage
 {
@@ -34,43 +34,15 @@ export interface IWeapon
 */
 export class Weapon implements IWeapon
 {
-	GetTimeToKill(damage: number): number
-	{
-		// Time in seconds here
-		let rawNeededShots = 250.0 / damage;
-
-		let shotsFired = rawNeededShots / this.OverallAccuracy;
-
-
-		let neededShots = Math.ceil(shotsFired);
-
-
-		let rps = this.Stats.RPM / 60.0;
-		// -1 because unless the gun has an open bolt delay it fires instantly
-		let result = ((neededShots - 1) / rps);
-
-		let timeToTarget = App.Range / this.Stats.BulletVelocity;
-		result += timeToTarget + this.Stats.OpenBoltDelay;
-
-		// return in milliseconds
-		return Math.ceil(result * 1000.0);
-	}
-	GetDamageProfileAtRange(): IDamage
-	{
-		let def = this.Stats.DamageData["Default"];
-		let range = App.Range;
-		for (let i = def.length - 1; i >= 0; i--)
-		{
-			let pro = def[i];
-			if (pro.Dropoff <= range)
-			{
-				return def[i];
-			}
-		}
-
-		return def[0];
-	}
 	_DamageProfile: IDamage;
+	WeaponName: string;
+	Stats: IWeaponStats;
+	Category: string;
+	WeaponAttachments: IWeaponAttachment[];
+	OverallAccuracy: number = .50;
+	HeadshotPercentage: number = 1;
+	ChestToBodyRatio: number = .6;
+
 	public get DamageProfile(): IDamage
 	{
 		if (!this._DamageProfile)
@@ -97,7 +69,72 @@ export class Weapon implements IWeapon
 	public get StomachTTK(): number
 	{
 		return this.GetTimeToKill(this.DamageProfile.Stomach);
+	}
 
+	public get TimeToKill(): number
+	{
+		return this.GetEstimatedTimeToKill();
+	}
+
+	private GetEstimatedTimeToKill()
+	{
+
+		let accuracy = this.OverallAccuracy;
+		let hsaccuracy = this.HeadshotPercentage;
+		let chestPercentage = (1.0 - hsaccuracy) *  this.ChestToBodyRatio;
+		let stomachPercentage = (1.0 - hsaccuracy) *  (1.0  -this.ChestToBodyRatio);
+		let health = 250.0;
+		let damageprofile = this.DamageProfile;
+		// return 0;
+		let rawNeededShots = 0;
+
+		do
+		{
+			let healthToHS = health / damageprofile.Head;
+			let healthToChest = health / damageprofile.Chest;
+			let healthToStomach = health / damageprofile.Stomach;
+			let pikesmagicformula = (
+				(hsaccuracy * healthToHS) +
+				(chestPercentage * healthToChest) +
+				(stomachPercentage * healthToStomach)
+			) / (hsaccuracy + chestPercentage + stomachPercentage);
+
+			let shotsneeded = Math.ceil(pikesmagicformula);
+			let remaining = shotsneeded;
+			let headbullets = Math.ceil(remaining * hsaccuracy);
+			remaining -= headbullets;
+			let chestbullets = Math.ceil(remaining * chestPercentage);
+			remaining -= chestbullets;
+			let stomachbullets = remaining;
+
+			let damage =
+				(headbullets * damageprofile.Head) +
+				(chestbullets * damageprofile.Chest) +
+				(stomachbullets * damageprofile.Stomach);
+
+			health -= damage;
+			rawNeededShots += headbullets + chestbullets + stomachbullets;
+
+		} while (health > 0);
+
+
+		// Time in seconds here
+
+		let shotsFired = rawNeededShots / accuracy;
+
+
+		let neededShots = Math.ceil(shotsFired);
+
+
+		let rps = this.Stats.RPM / 60.0;
+		// -1 because unless the gun has an open bolt delay it fires instantly
+		let result = ((neededShots - 1) / rps);
+
+		let timeToTarget = App.Range / this.Stats.BulletVelocity;
+		result += timeToTarget + this.Stats.OpenBoltDelay;
+
+		// return in milliseconds
+		return Math.ceil(result * 1000.0);
 	}
 
 	GetTimeToKillFromEnum(id: number, updaterange: boolean = false): number
@@ -116,16 +153,51 @@ export class Weapon implements IWeapon
 				return this.StomachTTK;
 			case Columns.Extremeties:
 				return this.ExtremetiesTTK;
+			case Columns.TimeToKill:
+				return this.TimeToKill;
 			default:
 				return Number.NaN;
 		}
 	}
-	WeaponName: string;
-	Stats: IWeaponStats;
-	Category: string;
-	WeaponAttachments: IWeaponAttachment[];
-	OverallAccuracy: number = .50;
-	HeadshotPercentage: number = .20;
+
+	GetTimeToKill(damage: number): number
+	{
+		// Time in seconds here
+		let rawNeededShots = 250.0 / damage;
+
+		let shotsFired = rawNeededShots / this.OverallAccuracy;
+
+
+		let neededShots = Math.ceil(shotsFired);
+
+
+		let rps = this.Stats.RPM / 60.0;
+		// -1 because unless the gun has an open bolt delay it fires instantly
+		let result = ((neededShots - 1) / rps);
+
+		let timeToTarget = App.Range / this.Stats.BulletVelocity;
+		result += timeToTarget + this.Stats.OpenBoltDelay;
+
+		// return in milliseconds
+		return Math.ceil(result * 1000.0);
+	}
+
+	GetDamageProfileAtRange(): IDamage
+	{
+		let def = this.Stats.DamageData["Default"];
+		let range = App.Range;
+		for (let i = def.length - 1; i >= 0; i--)
+		{
+			let pro = def[i];
+			if (pro.Dropoff <= range)
+			{
+				return def[i];
+			}
+		}
+
+		return def[0];
+	}
+
 }
 
 

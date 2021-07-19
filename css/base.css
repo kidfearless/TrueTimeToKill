@@ -1,7 +1,8 @@
 
 .container {
 	display: grid;
-	grid-template-columns: repeat(10, auto);
+	grid-template-columns: repeat(9, auto);
+	column-gap: 16px;
 }
 
 .column {
@@ -34,11 +35,16 @@ input[type=range]
 
 .column > .column  div > span {
 	display: inline-flex;
-	min-width: calc(8 * 5px);
+	margin-right: 8px;
 }
 
 label
 {
 	user-select: none;
 	cursor: pointer;
+}
+
+#RangeInput
+{
+	margin-right: 16px;
 }

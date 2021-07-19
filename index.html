@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>True Time To Kill</title>
-		<script async="true" type="module" src="dist/index.js"></script>
+		<script async="true" type="module" src="dist/index.js">
+		</script>
 		<link rel="stylesheet" href="css/base.css">
-
 	</head>
 
 	<body>
 		<div id="SettingsRow">
-			<label for="RangeInputName">Range(m)</label>
-			<input id="RangeInput" name="RangeInputName" type="number" min="0" max="1000" value="40" />
+			<div id="SettingsRow">
+				<label for="RangeInputName">Range(m)</label>
+				<input id="RangeInput" name="RangeInputName" type="number" min="0" max="1000" value="40">
+				<button id="AccuracyMinus">-</button>
+				<span>Accuracy</span>
+				<button id="AccuracyPlus">+</button>
+
+				<button id="ChestMinus">-</button>
+				<span>TTK Chest Percentage</span>
+				<button id="ChestPlus">+</button>
+				<br>
+			</div>
 		</div>
 		<div id="WeaponsTable" class="container">
 		</div>
-
 	</body>
+
 </html>

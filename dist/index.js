@@ -8,7 +8,8 @@ export var Columns = {
     Extremeties: 5,
     OverallAccuracy: 6,
     HeadshotPercentage: 7,
-    Size: 8,
+    ChestToStomachRatio: 8,
+    Size: 9,
     0: "Weapon Name",
     1: "Time To Kill",
     2: "Head TTK",
@@ -16,7 +17,8 @@ export var Columns = {
     4: "Stomach TTK",
     5: "Extremeties TTK",
     6: "Overall Accuracy",
-    7: "Headshot Percentage"
+    7: "Headshot Percentage",
+    8: "Chest Percentage"
 };
 export var SortDirection = {
     Descending: -1,
@@ -60,17 +62,8 @@ export class App {
         range.addEventListener("change", (ev) => {
             App.Range = parseFloat(range.value);
         });
-        let minusAccuracy = document.createElement("button");
-        minusAccuracy.textContent = "-";
-        minusAccuracy.addEventListener("click", () => this.ChangeAllAccuracies(-0.01));
-        settings.appendChild(minusAccuracy);
-        let accuracySpan = document.createElement("span");
-        accuracySpan.textContent = "Accuracy";
-        settings.appendChild(accuracySpan);
-        let plusAccuracy = document.createElement("button");
-        plusAccuracy.textContent = "+";
-        plusAccuracy.addEventListener("click", () => this.ChangeAllAccuracies(0.01));
-        settings.appendChild(plusAccuracy);
+        document.getElementById("AccuracyMinus").addEventListener("click", () => this.ChangeAllAccuracies(-0.01));
+        document.getElementById("AccuracyPlus").addEventListener("click", () => this.ChangeAllAccuracies(0.01));
         for (let type of WeaponTypes) {
             let span = document.createElement("span");
             span.style.marginRight = "8px";
@@ -113,18 +106,20 @@ export class App {
             let span = document.createElement("span");
             span.innerText = weapon.WeaponName;
             weaponname.lastChild.appendChild(span);
-            let timetokill = this.Grid.children[Columns.TimeToKill];
-            for (let i = Columns.Head; i <= Columns.Extremeties; i++) {
+            for (let i = Columns.TimeToKill; i <= Columns.Extremeties; i++) {
                 let label1 = document.createElement("span");
                 label1.innerText = weapon.GetTimeToKillFromEnum(i, updaterange).toString();
                 this.Grid.children[i].lastChild.appendChild(label1);
             }
             let overallaccuracy = this.Grid.children[Columns.OverallAccuracy];
-            let slider = this.CreateAccuracySlider(weapon.OverallAccuracy, overallaccuracy.lastChild);
-            slider.addEventListener("mouseup", () => this.OnAccuracyChanged(slider, weapon));
+            let accuracyslider = this.CreateAccuracySlider(weapon.OverallAccuracy, overallaccuracy.lastChild);
+            accuracyslider.addEventListener("change", () => this.OnAccuracyChanged(accuracyslider, weapon));
             let headshotpercentage = this.Grid.children[Columns.HeadshotPercentage];
-            let slider2 = this.CreateAccuracySlider(weapon.HeadshotPercentage, headshotpercentage.lastChild);
-            slider2.addEventListener("mouseup", () => this.OnHSPercentageChanged(slider2, weapon));
+            let headshotslider = this.CreateAccuracySlider(weapon.HeadshotPercentage, headshotpercentage.lastChild);
+            headshotslider.addEventListener("change", () => this.OnHSPercentageChanged(headshotslider, weapon));
+            let chestratio = this.Grid.children[Columns.ChestToStomachRatio];
+            let chestslider = this.CreateAccuracySlider(weapon.ChestToBodyRatio, chestratio.lastChild);
+            chestslider.addEventListener("change", () => this.OnChestRatioChanged(chestslider, weapon));
         }
     }
     CreateAccuracySlider(accuracy, parentNode) {
@@ -148,6 +143,10 @@ export class App {
     }
     OnAccuracyChanged(overallslider, weapon) {
         weapon.OverallAccuracy = parseFloat(overallslider.value);
+        this.CreateTable(true);
+    }
+    OnChestRatioChanged(slider, weapon) {
+        weapon.ChestToBodyRatio = parseFloat(slider.value);
         this.CreateTable(true);
     }
     ClearTable() {
@@ -190,9 +189,8 @@ export class App {
             case Columns.Chest:
             case Columns.Stomach:
             case Columns.Extremeties:
-                this.Weapons.sort((left, right) => {
-                    return this.ColumnDirection[id] * Math.sign(left.GetTimeToKillFromEnum(id) - right.GetTimeToKillFromEnum(id));
-                });
+            case Columns.TimeToKill:
+                this.Weapons.sort((left, right) => this.ColumnDirection[id] * Math.sign(left.GetTimeToKillFromEnum(id) - right.GetTimeToKillFromEnum(id)));
                 break;
             default:
                 break;

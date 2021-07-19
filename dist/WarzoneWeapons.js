@@ -11,7 +11,7 @@ export var WeaponTypes = [
 export class Weapon {
     constructor() {
         this.OverallAccuracy = .50;
-        this.HeadshotPercentage = 1;
+        this.HeadshotPercentage = 0.2;
         this.ChestToBodyRatio = .6;
     }
     get DamageProfile() {

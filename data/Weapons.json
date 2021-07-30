@@ -16,15 +16,15 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 46,
-						"Chest": 34,
-						"Stomach": 31,
-						"Extremities": 31,
+						"Head": 48,
+						"Chest": 32,
+						"Stomach": 32,
+						"Extremities": 32,
 						"Dropoff": 0.0
 					},
 					{
 						"Head": 42,
-						"Chest": 30,
+						"Chest": 28,
 						"Stomach": 28,
 						"Extremities": 28,
 						"Dropoff": 39.0
@@ -1197,14 +1197,14 @@
 				"Default": [
 					{
 						"Head": 51,
-						"Chest": 40,
+						"Chest": 37,
 						"Stomach": 37,
 						"Extremities": 34,
 						"Dropoff": 0.0
 					},
 					{
 						"Head": 43,
-						"Chest": 34,
+						"Chest": 31,
 						"Stomach": 31,
 						"Extremities": 29,
 						"Dropoff": 48.0
@@ -2352,17 +2352,17 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 46,
-						"Chest": 34,
-						"Stomach": 31,
-						"Extremities": 31,
+						"Head": 40,
+						"Chest": 29,
+						"Stomach": 29,
+						"Extremities": 29,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 42,
-						"Chest": 30,
-						"Stomach": 28,
-						"Extremities": 28,
+						"Head": 37,
+						"Chest": 27,
+						"Stomach": 27,
+						"Extremities": 27,
 						"Dropoff": 33.0
 					}
 				]
@@ -4792,9 +4792,9 @@
 					},
 					{
 						"Head": 34,
-						"Chest": 24,
-						"Stomach": 24,
-						"Extremities": 24,
+						"Chest": 23,
+						"Stomach": 23,
+						"Extremities": 23,
 						"Dropoff": 48.0
 					}
 				]
@@ -5963,10 +5963,10 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 54,
-						"Chest": 39,
-						"Stomach": 36,
-						"Extremities": 36,
+						"Head": 59,
+						"Chest": 40,
+						"Stomach": 37,
+						"Extremities": 37,
 						"Dropoff": 0.0
 					},
 					{
@@ -6381,7 +6381,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -8788,7 +8788,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -9573,15 +9573,15 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 51,
-						"Chest": 37,
-						"Stomach": 34,
-						"Extremities": 34,
+						"Head": 49,
+						"Chest": 33,
+						"Stomach": 33,
+						"Extremities": 33,
 						"Dropoff": 0.0
 					},
 					{
 						"Head": 42,
-						"Chest": 30,
+						"Chest": 28,
 						"Stomach": 28,
 						"Extremities": 28,
 						"Dropoff": 40.0
@@ -9991,7 +9991,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -12461,7 +12461,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -13246,32 +13246,18 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 29,
-						"Chest": 24,
-						"Stomach": 24,
-						"Extremities": 21,
+						"Head": 27,
+						"Chest": 23,
+						"Stomach": 23,
+						"Extremities": 20,
 						"Dropoff": 0.0
-					},
-					{
-						"Head": 24,
-						"Chest": 20,
-						"Stomach": 20,
-						"Extremities": 17,
-						"Dropoff": 15.5
-					},
-					{
-						"Head": 23,
-						"Chest": 19,
-						"Stomach": 19,
-						"Extremities": 17,
-						"Dropoff": 22.5
 					},
 					{
 						"Head": 22,
 						"Chest": 19,
 						"Stomach": 19,
-						"Extremities": 16,
-						"Dropoff": 32.0
+						"Extremities": 17,
+						"Dropoff": 15.5
 					}
 				]
 			},
@@ -13966,7 +13952,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -14607,32 +14593,18 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 56,
-						"Chest": 35,
-						"Stomach": 35,
-						"Extremities": 35,
+						"Head": 49,
+						"Chest": 34,
+						"Stomach": 31,
+						"Extremities": 31,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 40,
-						"Chest": 25,
-						"Stomach": 25,
-						"Extremities": 25,
-						"Dropoff": 18.0
-					},
-					{
-						"Head": 32,
-						"Chest": 20,
-						"Stomach": 20,
-						"Extremities": 20,
-						"Dropoff": 25.0
-					},
-					{
-						"Head": 31,
-						"Chest": 20,
-						"Stomach": 20,
-						"Extremities": 20,
-						"Dropoff": 32.0
+						"Head": 41,
+						"Chest": 28,
+						"Stomach": 26,
+						"Extremities": 26,
+						"Dropoff": 14.0
 					}
 				]
 			},
@@ -14647,7 +14619,7 @@
 			"MagSize": 30.0,
 			"Movement": 4.9199999999999999289457264240,
 			"AdsMovement": 2.8999999999999999111821580300,
-			"BulletVelocity": 615.0,
+			"BulletVelocity": 350.0,
 			"RecoilMag": 0.0,
 			"HorizBounce": 0.0,
 			"HipfireArea": 7.5
@@ -15327,7 +15299,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -15969,25 +15941,18 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 55,
+						"Head": 49,
 						"Chest": 34,
 						"Stomach": 34,
 						"Extremities": 30,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 40,
-						"Chest": 25,
-						"Stomach": 25,
-						"Extremities": 22,
-						"Dropoff": 12.5
-					},
-					{
-						"Head": 32,
-						"Chest": 20,
-						"Stomach": 20,
-						"Extremities": 18,
-						"Dropoff": 21.0
+						"Head": 38,
+						"Chest": 26,
+						"Stomach": 26,
+						"Extremities": 23,
+						"Dropoff": 13.5
 					}
 				],
 				"5.56 NATO 30-Round Mags": [
@@ -17154,25 +17119,18 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 40,
-						"Chest": 25,
-						"Stomach": 25,
-						"Extremities": 22,
+						"Head": 38,
+						"Chest": 24,
+						"Stomach": 24,
+						"Extremities": 21,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 32,
-						"Chest": 20,
-						"Stomach": 20,
-						"Extremities": 18,
-						"Dropoff": 12.6
-					},
-					{
-						"Head": 29,
-						"Chest": 18,
-						"Stomach": 18,
-						"Extremities": 16,
-						"Dropoff": 18.2
+						"Head": 30,
+						"Chest": 19,
+						"Stomach": 19,
+						"Extremities": 17,
+						"Dropoff": 13.0
 					}
 				],
 				".45 Hollow Point 12-R Mags": [
@@ -18292,18 +18250,11 @@
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 29,
-						"Chest": 20,
-						"Stomach": 20,
+						"Head": 30,
+						"Chest": 21,
+						"Stomach": 21,
 						"Extremities": 18,
 						"Dropoff": 18.0
-					},
-					{
-						"Head": 28,
-						"Chest": 20,
-						"Stomach": 20,
-						"Extremities": 17,
-						"Dropoff": 23.0
 					}
 				]
 			},
@@ -19399,14 +19350,14 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 64,
+						"Head": 62,
 						"Chest": 40,
 						"Stomach": 40,
 						"Extremities": 40,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 55,
+						"Head": 53,
 						"Chest": 34,
 						"Stomach": 34,
 						"Extremities": 34,
@@ -20105,7 +20056,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -20602,14 +20553,14 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 58,
+						"Head": 49,
 						"Chest": 43,
 						"Stomach": 39,
 						"Extremities": 36,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 48,
+						"Head": 41,
 						"Chest": 36,
 						"Stomach": 33,
 						"Extremities": 30,
@@ -21308,7 +21259,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -22655,7 +22606,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -25546,13 +25497,6 @@
 						"Stomach": 20,
 						"Extremities": 18,
 						"Dropoff": 12.8
-					},
-					{
-						"Head": 29,
-						"Chest": 18,
-						"Stomach": 18,
-						"Extremities": 16,
-						"Dropoff": 19.2
 					}
 				]
 			},
@@ -26529,24 +26473,24 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 56,
-						"Chest": 35,
-						"Stomach": 35,
-						"Extremities": 35,
+						"Head": 55,
+						"Chest": 34,
+						"Stomach": 34,
+						"Extremities": 34,
 						"Dropoff": 0.0
 					},
 					{
 						"Head": 40,
-						"Chest": 25,
-						"Stomach": 25,
-						"Extremities": 25,
+						"Chest": 26,
+						"Stomach": 26,
+						"Extremities": 26,
 						"Dropoff": 14.0
 					},
 					{
 						"Head": 30,
-						"Chest": 20,
-						"Stomach": 20,
-						"Extremities": 20,
+						"Chest": 19,
+						"Stomach": 19,
+						"Extremities": 19,
 						"Dropoff": 22.0
 					}
 				]
@@ -27534,14 +27478,7 @@
 						"Chest": 39,
 						"Stomach": 38,
 						"Extremities": 34,
-						"Dropoff": 14.5
-					},
-					{
-						"Head": 55,
-						"Chest": 35,
-						"Stomach": 34,
-						"Extremities": 30,
-						"Dropoff": 24.0
+						"Dropoff": 16.0
 					}
 				]
 			},
@@ -28669,18 +28606,11 @@
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 40,
-						"Chest": 25,
-						"Stomach": 25,
-						"Extremities": 22,
-						"Dropoff": 15.0
-					},
-					{
-						"Head": 35,
-						"Chest": 22,
-						"Stomach": 22,
-						"Extremities": 19,
-						"Dropoff": 23.8
+						"Head": 42,
+						"Chest": 26,
+						"Stomach": 26,
+						"Extremities": 23,
+						"Dropoff": 16.0
 					}
 				],
 				".41 AE 32-Round Mags": [
@@ -28697,13 +28627,6 @@
 						"Stomach": 29,
 						"Extremities": 29,
 						"Dropoff": 17.5
-					},
-					{
-						"Head": 40,
-						"Chest": 30,
-						"Stomach": 25,
-						"Extremities": 25,
-						"Dropoff": 30.0
 					}
 				]
 			},
@@ -29847,25 +29770,18 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 48,
-						"Chest": 30,
-						"Stomach": 30,
-						"Extremities": 27,
+						"Head": 41,
+						"Chest": 27,
+						"Stomach": 27,
+						"Extremities": 24,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 40,
-						"Chest": 25,
-						"Stomach": 25,
-						"Extremities": 22,
+						"Head": 37,
+						"Chest": 24,
+						"Stomach": 24,
+						"Extremities": 21,
 						"Dropoff": 20.0
-					},
-					{
-						"Head": 35,
-						"Chest": 22,
-						"Stomach": 22,
-						"Extremities": 19,
-						"Dropoff": 26.0
 					}
 				]
 			},
@@ -30560,7 +30476,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -31201,25 +31117,18 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 50,
-						"Chest": 32,
-						"Stomach": 32,
-						"Extremities": 28,
+						"Head": 46,
+						"Chest": 31,
+						"Stomach": 31,
+						"Extremities": 27,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 39,
-						"Chest": 24,
-						"Stomach": 24,
-						"Extremities": 21,
-						"Dropoff": 15.0
-					},
-					{
-						"Head": 31,
-						"Chest": 20,
-						"Stomach": 20,
-						"Extremities": 18,
-						"Dropoff": 20.0
+						"Head": 37,
+						"Chest": 25,
+						"Stomach": 25,
+						"Extremities": 22,
+						"Dropoff": 13.0
 					}
 				]
 			},
@@ -31914,7 +31823,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -32829,7 +32738,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -34790,6 +34699,63 @@
 				"StrafeModifier": 0.0
 			}
 		]
+	},
+	{
+		"WeaponName": "AMP",
+		"Stats": {
+			"WeaponSlots": [
+				"Muzzle",
+				"Barrel",
+				"Laser",
+				"Optic",
+				"Trigger Action",
+				"Ammunition",
+				"Rear Grip",
+				"Perk"
+			],
+			"DamageData": {
+				"Default": [
+					{
+						"Head": 42,
+						"Chest": 39,
+						"Stomach": 36,
+						"Extremities": 33,
+						"Dropoff": 0.0
+					},
+					{
+						"Head": 36,
+						"Chest": 33,
+						"Stomach": 30,
+						"Extremities": 28,
+						"Dropoff": 11.0
+					},
+					{
+						"Head": 30,
+						"Chest": 28,
+						"Stomach": 26,
+						"Extremities": 24,
+						"Dropoff": 18.0
+					}
+				]
+			},
+			"Burst": true,
+			"RPM": 644.0,
+			"AltRPM": 0.0,
+			"OpenBoltDelay": 0.0,
+			"AimDownSights": 1.0,
+			"TacticalSprintToFire": 1.0,
+			"SprintToFire": 1.0,
+			"ReloadTime": 1.0,
+			"MagSize": 15.0,
+			"Movement": 1.0,
+			"AdsMovement": 1.0,
+			"BulletVelocity": 200.0,
+			"RecoilMag": 1.0,
+			"HorizBounce": 1.0,
+			"HipfireArea": 7.5
+		},
+		"Category": "Pistols",
+		"WeaponAttachments": []
 	},
 	{
 		"WeaponName": "M16",
@@ -47517,14 +47483,14 @@
 				"Default": [
 					{
 						"Head": 77,
-						"Chest": 62,
+						"Chest": 57,
 						"Stomach": 48,
 						"Extremities": 48,
 						"Dropoff": 0.0
 					},
 					{
 						"Head": 58,
-						"Chest": 46,
+						"Chest": 43,
 						"Stomach": 36,
 						"Extremities": 36,
 						"Dropoff": 42.5
@@ -48727,11 +48693,11 @@
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 28,
-						"Chest": 19,
-						"Stomach": 19,
-						"Extremities": 19,
-						"Dropoff": 37.0
+						"Head": 30,
+						"Chest": 20,
+						"Stomach": 20,
+						"Extremities": 20,
+						"Dropoff": 34.0
 					}
 				]
 			},
@@ -49973,17 +49939,17 @@
 				"Default": [
 					{
 						"Head": 56,
-						"Chest": 42,
+						"Chest": 38,
 						"Stomach": 35,
 						"Extremities": 35,
 						"Dropoff": 0.0
 					},
 					{
 						"Head": 51,
-						"Chest": 38,
+						"Chest": 35,
 						"Stomach": 32,
 						"Extremities": 32,
-						"Dropoff": 33.0
+						"Dropoff": 31.0
 					}
 				]
 			},
@@ -51201,14 +51167,14 @@
 				"Default": [
 					{
 						"Head": 56,
-						"Chest": 42,
+						"Chest": 38,
 						"Stomach": 35,
 						"Extremities": 35,
 						"Dropoff": 0.0
 					},
 					{
 						"Head": 51,
-						"Chest": 38,
+						"Chest": 35,
 						"Stomach": 32,
 						"Extremities": 32,
 						"Dropoff": 27.5
@@ -51217,21 +51183,21 @@
 				"5.45x39mm 30-Round Mags": [
 					{
 						"Head": 55,
-						"Chest": 40,
+						"Chest": 37,
 						"Stomach": 34,
 						"Extremities": 34,
 						"Dropoff": 0.0
 					},
 					{
 						"Head": 50,
-						"Chest": 37,
+						"Chest": 34,
 						"Stomach": 31,
 						"Extremities": 31,
 						"Dropoff": 17.0
 					},
 					{
 						"Head": 40,
-						"Chest": 30,
+						"Chest": 27,
 						"Stomach": 25,
 						"Extremities": 25,
 						"Dropoff": 25.5
@@ -53645,18 +53611,18 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 40,
-						"Chest": 27,
-						"Stomach": 27,
-						"Extremities": 27,
-						"Dropoff": 0.0
-					},
-					{
-						"Head": 37,
+						"Head": 35,
 						"Chest": 25,
 						"Stomach": 25,
 						"Extremities": 25,
-						"Dropoff": 31.0
+						"Dropoff": 0.0
+					},
+					{
+						"Head": 32,
+						"Chest": 23,
+						"Stomach": 23,
+						"Extremities": 23,
+						"Dropoff": 26.0
 					}
 				]
 			},
@@ -54207,7 +54173,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -55016,18 +54982,18 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 45,
-						"Chest": 33,
-						"Stomach": 30,
-						"Extremities": 28,
+						"Head": 40,
+						"Chest": 28,
+						"Stomach": 27,
+						"Extremities": 27,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 37,
-						"Chest": 27,
-						"Stomach": 25,
+						"Head": 34,
+						"Chest": 25,
+						"Stomach": 23,
 						"Extremities": 23,
-						"Dropoff": 28.0
+						"Dropoff": 30.0
 					}
 				]
 			},
@@ -55578,7 +55544,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -56363,17 +56329,17 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 48,
-						"Chest": 32,
-						"Stomach": 32,
-						"Extremities": 32,
+						"Head": 45,
+						"Chest": 30,
+						"Stomach": 30,
+						"Extremities": 30,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 42,
-						"Chest": 28,
-						"Stomach": 28,
-						"Extremities": 28,
+						"Head": 40,
+						"Chest": 27,
+						"Stomach": 27,
+						"Extremities": 27,
 						"Dropoff": 22.0
 					}
 				]
@@ -56925,7 +56891,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -57710,18 +57676,18 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 58,
-						"Chest": 43,
+						"Head": 54,
+						"Chest": 36,
 						"Stomach": 36,
 						"Extremities": 36,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 51,
-						"Chest": 38,
+						"Head": 48,
+						"Chest": 32,
 						"Stomach": 32,
 						"Extremities": 32,
-						"Dropoff": 25.0
+						"Dropoff": 26.0
 					}
 				]
 			},
@@ -58272,7 +58238,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -60334,15 +60300,15 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 100,
-						"Chest": 58,
+						"Head": 79,
+						"Chest": 53,
 						"Stomach": 49,
 						"Extremities": 49,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 92,
-						"Chest": 54,
+						"Head": 72,
+						"Chest": 49,
 						"Stomach": 45,
 						"Extremities": 45,
 						"Dropoff": 21.0
@@ -61569,10 +61535,10 @@
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 33,
-						"Chest": 22,
-						"Stomach": 22,
-						"Extremities": 22,
+						"Head": 36,
+						"Chest": 24,
+						"Stomach": 24,
+						"Extremities": 24,
 						"Dropoff": 31.0
 					}
 				]
@@ -62751,7 +62717,7 @@
 						"Head": 38,
 						"Chest": 28,
 						"Stomach": 28,
-						"Extremities": 25,
+						"Extremities": 26,
 						"Dropoff": 38.0
 					}
 				]
@@ -63303,7 +63269,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -64089,17 +64055,17 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 42,
-						"Chest": 28,
-						"Stomach": 28,
-						"Extremities": 28,
+						"Head": 40,
+						"Chest": 27,
+						"Stomach": 27,
+						"Extremities": 27,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 33,
-						"Chest": 22,
-						"Stomach": 22,
-						"Extremities": 22,
+						"Head": 34,
+						"Chest": 23,
+						"Stomach": 23,
+						"Extremities": 23,
 						"Dropoff": 29.0
 					}
 				],
@@ -64116,14 +64082,14 @@
 						"Chest": 20,
 						"Stomach": 20,
 						"Extremities": 17,
-						"Dropoff": 16.0
+						"Dropoff": 12.0
 					},
 					{
 						"Head": 29,
 						"Chest": 18,
 						"Stomach": 18,
 						"Extremities": 16,
-						"Dropoff": 18.5
+						"Dropoff": 17.0
 					}
 				],
 				".458 SOCOM 10-Round Mags": [
@@ -65428,10 +65394,10 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 42,
-						"Chest": 28,
-						"Stomach": 28,
-						"Extremities": 28,
+						"Head": 39,
+						"Chest": 26,
+						"Stomach": 26,
+						"Extremities": 26,
 						"Dropoff": 0.0
 					},
 					{
@@ -66536,16 +66502,16 @@
 				"Default": [
 					{
 						"Head": 42,
-						"Chest": 30,
-						"Stomach": 28,
+						"Chest": 33,
+						"Stomach": 30,
 						"Extremities": 28,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 33,
-						"Chest": 24,
-						"Stomach": 22,
-						"Extremities": 22,
+						"Head": 36,
+						"Chest": 28,
+						"Stomach": 26,
+						"Extremities": 24,
 						"Dropoff": 31.0
 					}
 				]
@@ -66953,7 +66919,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -67934,15 +67900,15 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 52,
-						"Chest": 38,
+						"Head": 54,
+						"Chest": 35,
 						"Stomach": 35,
 						"Extremities": 35,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 46,
-						"Chest": 34,
+						"Head": 48,
+						"Chest": 31,
 						"Stomach": 31,
 						"Extremities": 31,
 						"Dropoff": 25.0
@@ -67957,11 +67923,11 @@
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 94,
+						"Head": 93,
 						"Chest": 54,
 						"Stomach": 49,
 						"Extremities": 45,
-						"Dropoff": 25.0
+						"Dropoff": 37.0
 					}
 				]
 			},
@@ -69249,10 +69215,10 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 40,
-						"Chest": 31,
-						"Stomach": 31,
-						"Extremities": 31,
+						"Head": 39,
+						"Chest": 29,
+						"Stomach": 29,
+						"Extremities": 29,
 						"Dropoff": 0.0
 					},
 					{
@@ -69667,7 +69633,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,
@@ -70596,18 +70562,18 @@
 			"DamageData": {
 				"Default": [
 					{
-						"Head": 59,
-						"Chest": 44,
-						"Stomach": 40,
-						"Extremities": 37,
+						"Head": 54,
+						"Chest": 36,
+						"Stomach": 36,
+						"Extremities": 36,
 						"Dropoff": 0.0
 					},
 					{
-						"Head": 55,
-						"Chest": 40,
-						"Stomach": 37,
+						"Head": 53,
+						"Chest": 34,
+						"Stomach": 34,
 						"Extremities": 34,
-						"Dropoff": 25.0
+						"Dropoff": 26.0
 					}
 				]
 			},
@@ -71158,7 +71124,7 @@
 				"StrafeModifier": 0.0
 			},
 			{
-				"Name": "Axial Arms 3x (2.7x)",
+				"Name": "Axial Arms (2x)",
 				"Slot": "Optic",
 				"UnlockLevel": "",
 				"DifferentDp": 0.0,

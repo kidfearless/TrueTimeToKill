@@ -10,6 +10,12 @@ export var WeaponTypes =
 		"Assault Rifles"
 	];
 
+export var Games = {
+	"mw": "Modern Warfare",
+	"cw": "Cold War",
+	"vg": "Vanguard",
+}
+
 export interface IDamage
 {
 	Head: number;
@@ -81,8 +87,8 @@ export class Weapon implements IWeapon
 
 		let accuracy = this.OverallAccuracy;
 		let hsaccuracy = this.HeadshotPercentage;
-		let chestPercentage = (1.0 - hsaccuracy) *  this.ChestToBodyRatio;
-		let stomachPercentage = (1.0 - hsaccuracy) *  (1.0  -this.ChestToBodyRatio);
+		let chestPercentage = (1.0 - hsaccuracy) * this.ChestToBodyRatio;
+		let stomachPercentage = (1.0 - hsaccuracy) * (1.0 - this.ChestToBodyRatio);
 		let health = 250.0;
 		let damageprofile = this.DamageProfile;
 		// return 0;
@@ -222,6 +228,7 @@ export interface IWeaponStats
 	RecoilMag: number;
 	HorizBounce: number;
 	HipfireArea: number;
+	Game: string;
 }
 
 export interface IWeaponSlot

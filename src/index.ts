@@ -1,5 +1,5 @@
 import { FireOnDomReady } from './Helpers.js';
-import { IWeapon, Weapon, WeaponTypes } from './WarzoneWeapons.js';
+import { IWeapon, Weapon, WeaponTypes, Games } from './WarzoneWeapons.js';
 // import { BodyPoints, Convert, DamageProfile, IWeapon, Type, Weapon, WeaponTypes } from './WarzoneWeapons.js';
 
 
@@ -42,7 +42,8 @@ export class App
 	Weapons: Weapon[];
 	ScriptImportPromise: Promise<Response>;
 	Grid: HTMLDivElement;
-	Filters: {};
+	WeaponFilters: {};
+	GameFilters: {};
 
 	private static _Range: number = 40;
 	CurrentSortID: number;
@@ -63,10 +64,15 @@ export class App
 	constructor()
 	{
 		this.ColumnDirection = {};
-		this.Filters = {};
+		this.WeaponFilters = {};
+		this.GameFilters = {};
 		for(let type of WeaponTypes)
 		{
-			this.Filters[type] = true;
+			this.WeaponFilters[type] = true;
+		}
+		for(let game in Games)
+		{
+			this.GameFilters[game] = true;
 		}
 		for (let i = 0; i < Columns.Size; i++)
 		{
@@ -124,10 +130,35 @@ export class App
 			span.addEventListener("click", () => this.OnWeaponTypeFiltered(checkbox, type));
 			settings.appendChild(span);
 		}
+
+		settings.appendChild(document.createElement("br"));
+
+		for(let game in Games)
+		{
+			let span = document.createElement("span");
+			span.style.marginRight = "8px";
+			let checkbox = document.createElement("input");
+			checkbox.name = game;
+			checkbox.type = "checkbox";
+			checkbox.checked = true;
+			checkbox.addEventListener("click", () => this.OnGameTypeFiltered(checkbox, game));
+
+			let label = document.createElement("label");
+			label.htmlFor = game + "_filterbox";
+			label.textContent = Games[game];
+
+			span.appendChild(checkbox);
+			span.appendChild(label);
+			span.addEventListener("click", () => this.OnGameTypeFiltered(checkbox, game));
+			settings.appendChild(span);
+		}
+
+
 		await this.ScriptImportPromise;
 
 		this.CreateTable();
 	}
+	
 	ChangeAllAccuracies(modifier: number): any
 	{
 		for(let weapon of this.Weapons)
@@ -143,7 +174,14 @@ export class App
 	OnWeaponTypeFiltered(checkbox: HTMLInputElement, type: string): any
 	{
 		checkbox.checked = !checkbox.checked;
-		this.Filters[type] = checkbox.checked;
+		this.WeaponFilters[type] = checkbox.checked;
+		this.CreateTable();
+	}
+
+	OnGameTypeFiltered(checkbox: HTMLInputElement, game: string): any
+	{
+		checkbox.checked = !checkbox.checked;
+		this.GameFilters[game] = checkbox.checked;
 		this.CreateTable();
 	}
 
@@ -156,7 +194,7 @@ export class App
 
 		for (let weapon of this.Weapons)
 		{
-			if(!this.Filters[weapon.Category])
+			if(!this.WeaponFilters[weapon.Category] || !this.GameFilters[weapon.Stats.Game])
 			{
 				continue;
 			}

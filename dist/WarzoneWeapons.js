@@ -8,6 +8,11 @@ export var WeaponTypes = [
     "Marksman Rifles",
     "Assault Rifles"
 ];
+export var Games = {
+    "mw": "Modern Warfare",
+    "cw": "Cold War",
+    "vg": "Vanguard",
+};
 export class Weapon {
     constructor() {
         this.OverallAccuracy = .50;

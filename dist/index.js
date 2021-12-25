@@ -1,4 +1,4 @@
-import { Weapon, WeaponTypes } from './WarzoneWeapons.js';
+import { Weapon, WeaponTypes, Games } from './WarzoneWeapons.js';
 export var Columns = {
     WeaponName: 0,
     TimeToKill: 1,
@@ -28,9 +28,13 @@ export var SortDirection = {
 export class App {
     constructor() {
         this.ColumnDirection = {};
-        this.Filters = {};
+        this.WeaponFilters = {};
+        this.GameFilters = {};
         for (let type of WeaponTypes) {
-            this.Filters[type] = true;
+            this.WeaponFilters[type] = true;
+        }
+        for (let game in Games) {
+            this.GameFilters[game] = true;
         }
         for (let i = 0; i < Columns.Size; i++) {
             this.ColumnDirection[i] = SortDirection.Ascending;
@@ -80,6 +84,23 @@ export class App {
             span.addEventListener("click", () => this.OnWeaponTypeFiltered(checkbox, type));
             settings.appendChild(span);
         }
+        settings.appendChild(document.createElement("br"));
+        for (let game in Games) {
+            let span = document.createElement("span");
+            span.style.marginRight = "8px";
+            let checkbox = document.createElement("input");
+            checkbox.name = game;
+            checkbox.type = "checkbox";
+            checkbox.checked = true;
+            checkbox.addEventListener("click", () => this.OnGameTypeFiltered(checkbox, game));
+            let label = document.createElement("label");
+            label.htmlFor = game + "_filterbox";
+            label.textContent = Games[game];
+            span.appendChild(checkbox);
+            span.appendChild(label);
+            span.addEventListener("click", () => this.OnGameTypeFiltered(checkbox, game));
+            settings.appendChild(span);
+        }
         await this.ScriptImportPromise;
         this.CreateTable();
     }
@@ -93,13 +114,18 @@ export class App {
     }
     OnWeaponTypeFiltered(checkbox, type) {
         checkbox.checked = !checkbox.checked;
-        this.Filters[type] = checkbox.checked;
+        this.WeaponFilters[type] = checkbox.checked;
+        this.CreateTable();
+    }
+    OnGameTypeFiltered(checkbox, game) {
+        checkbox.checked = !checkbox.checked;
+        this.GameFilters[game] = checkbox.checked;
         this.CreateTable();
     }
     CreateTable(updaterange = false) {
         this.ClearTable();
         for (let weapon of this.Weapons) {
-            if (!this.Filters[weapon.Category]) {
+            if (!this.WeaponFilters[weapon.Category] || !this.GameFilters[weapon.Stats.Game]) {
                 continue;
             }
             let weaponname = this.Grid.children[Columns.WeaponName];
